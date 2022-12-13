@@ -2,7 +2,7 @@ import express from "express";
 import { body, param, validationResult } from "express-validator";
 import { ObjectId } from "mongodb";
 import connectToCluster from "../utility/mongoConnection.js";
-import validateRequest from "../../middleware/validateRequest.js";
+import validateRequest from "../middleware/validateRequest.js";
 
 const router = express.Router();
 
