@@ -4,8 +4,9 @@ import { ObjectId } from "mongodb";
 import BadRequestError from "../error/BadRequestError.js";
 import DuplicateResourceError from "../error/DuplicateResourceError.js";
 import NotFoundError from "../error/NotFoundError.js";
-import connectToCluster from "../utility/mongoConnection.js";
+import permit from "../middleware/authorisation.js";
 import validateRequest from "../middleware/validateRequest.js";
+import connectToCluster from "../utility/mongoConnection.js";
 
 const RESOURCE_NAME = "product";
 const router = express.Router();
@@ -47,6 +48,7 @@ router.get(
 
 router.post(
   "/",
+  permit(),
   [
     body("name")
       .trim()
@@ -80,6 +82,7 @@ router.post(
 
 router.patch(
   "/:productId",
+  permit("ADMIN"),
   [
     param("productId").isMongoId().withMessage("ID specified is invalid"),
     body("name").trim().escape(),
@@ -141,6 +144,7 @@ router.patch(
 
 router.put(
   "/:productId",
+  permit("ADMIN"),
   [
     param("productId").isMongoId().withMessage("ID specified is invalid"),
     body("name")
@@ -182,6 +186,7 @@ router.put(
 
 router.delete(
   "/:productId",
+  permit("ADMIN"),
   param("productId").isMongoId().withMessage("ID specified is invalid"),
   validateRequest,
   async (req, res, next) => {
