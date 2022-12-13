@@ -1,7 +1,7 @@
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
-import productRouter from './routes/productRouter.js';
+import productRouter from "./routes/productRouter.js";
 
 const app = express();
 const port = process.env.port ?? 8080;
@@ -12,11 +12,19 @@ app.use(cors());
 app.use(express.json());
 
 // Routers
-app.use('/products', productRouter);
+app.use("/products", productRouter);
 
 // GET Route
 app.get("/", (req, res) => {
   res.json({ msg: "Hello World!" });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.statusCode ?? 500).json({
+    error: err.error ?? "Something went wrong",
+    msg: err.message ?? "Please try again later",
+  });
 });
 
 // Open listening port for connection
