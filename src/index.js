@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
+import productRouter from './routes/productRouter.js';
 
 const app = express();
 const port = process.env.port ?? 8080;
@@ -9,6 +10,9 @@ const port = process.env.port ?? 8080;
 app.use(morgan("combined"));
 app.use(cors());
 app.use(express.json());
+
+// Routers
+app.use('/products', productRouter);
 
 // GET Route
 app.get("/", (req, res) => {
