@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-workshop",
+  "version": "1.0.0",
+  "description": "SMU .Hack Node.js Workshop",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config src/index.js",
+    "serve": "node -r dotenv/config src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoingCaffeineFree/nodejs-workshop.git"
+  },
+  "author": "Jerome Ng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoingCaffeineFree/nodejs-workshop/issues"
+  },
+  "homepage": "https://github.com/GoingCaffeineFree/nodejs-workshop#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
