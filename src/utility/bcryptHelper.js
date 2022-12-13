@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 
-const SALT_ROUNDS = process.env.bcryptSaltRounds ?? 12;
+const SALT_ROUNDS = parseInt(process.env.bcryptSaltRounds) ?? 12;
 
 export default class BcryptHelper {
   static hashPassword = async (plaintext) => {

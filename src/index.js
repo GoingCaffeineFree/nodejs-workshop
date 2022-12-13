@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
+import authRouter from "./routes/authRouter.js";
 import productRouter from "./routes/productRouter.js";
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routers
+app.use("/auth", authRouter);
 app.use("/products", productRouter);
 
 // GET Route
